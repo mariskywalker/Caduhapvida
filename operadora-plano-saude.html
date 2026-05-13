@@ -379,6 +379,7 @@
           sessoes: 1800 + i*30 + intBetween(-50, 50),
           criancas_ativas: 380 + i*10 + intBetween(-5, 8),
           conformidade_gps: 78 + Math.min(15, i) + intBetween(-3, 3),
+          alertas_mes: 11 + Math.round(i * 1.6) + intBetween(-2, 6),
         }));
       })();
 
@@ -577,6 +578,8 @@
          ===================================================== */
 
       let evolutionChartInstance = null;
+      let dashboardChartGps = null;
+      let dashboardChartAlertas = null;
 
       function renderDashboard() {
         const root = document.getElementById("page-dashboard");
@@ -626,11 +629,37 @@
               <div class="flex items-baseline justify-between mb-2">
                 <div>
                   <h2 class="text-lg font-bold text-ink-900">Evolução da carteira</h2>
-                  <p class="text-xs text-ink-500">Custo total e volume de sessões — últimos 12 meses</p>
+                  <p class="text-xs text-ink-500">Custo total e volume de sessões nos últimos 12 meses</p>
                 </div>
               </div>
               <div style="position:relative; height:280px;">
                 <canvas id="evolutionChart"></canvas>
+              </div>
+              <div class="flex flex-col gap-6 mt-6 pt-6 border-t border-ink-100">
+                <div class="rounded-2xl p-px bg-gradient-to-br from-emerald-400/35 via-teal-400/15 to-transparent shadow-sm">
+                  <div class="rounded-2xl bg-white/75 backdrop-blur-md px-4 pt-3 pb-2 border border-white/70">
+                    <div class="flex items-start justify-between gap-3 mb-1">
+                      <div class="min-w-0">
+                        <h3 class="text-sm font-bold text-ink-900 tracking-tight">Conformidade média GPS</h3>
+                        <p class="text-xs text-ink-500 leading-snug">Check-ins válidos sobre sessões faturadas (demo)</p>
+                      </div>
+                      <span class="shrink-0 text-xs font-bold tabular-nums text-emerald-900 bg-emerald-50 border border-emerald-200/90 rounded-full px-2.5 py-1">${serieTemporal[serieTemporal.length-1].conformidade_gps}%</span>
+                    </div>
+                    <div class="relative h-[240px]"><canvas id="dashChartGps"></canvas></div>
+                  </div>
+                </div>
+                <div class="rounded-2xl p-px bg-gradient-to-br from-amber-400/40 via-orange-400/18 to-transparent shadow-sm">
+                  <div class="rounded-2xl bg-white/75 backdrop-blur-md px-4 pt-3 pb-2 border border-white/70">
+                    <div class="flex items-start justify-between gap-3 mb-1">
+                      <div class="min-w-0">
+                        <h3 class="text-sm font-bold text-ink-900 tracking-tight">Alertas abertos por mês</h3>
+                        <p class="text-xs text-ink-500 leading-snug">Novos + em análise (série sintética)</p>
+                      </div>
+                      <span class="shrink-0 text-xs font-bold tabular-nums text-amber-950 bg-amber-50 border border-amber-200/90 rounded-full px-2.5 py-1">${serieTemporal[serieTemporal.length-1].alertas_mes} no mês</span>
+                    </div>
+                    <div class="relative h-[260px]"><canvas id="dashChartAlertas"></canvas></div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -759,6 +788,157 @@
               y1: { position: "right", grid: { display: false }, ticks: { color: "#767676", font: { size: 11 } } },
             }
           }
+        });
+
+        if (dashboardChartGps) { dashboardChartGps.destroy(); dashboardChartGps = null; }
+        if (dashboardChartAlertas) { dashboardChartAlertas.destroy(); dashboardChartAlertas = null; }
+
+        const dashFont = { family: "system-ui,-apple-system,'Segoe UI',Roboto,sans-serif" };
+        const hGps = 240;
+        const ctxGps = document.getElementById("dashChartGps").getContext("2d");
+        const gradGpsFill = ctxGps.createLinearGradient(0, hGps, 0, 0);
+        gradGpsFill.addColorStop(0, "rgba(16,185,129,0.05)");
+        gradGpsFill.addColorStop(0.4, "rgba(45,212,191,0.18)");
+        gradGpsFill.addColorStop(1, "rgba(6,182,212,0.32)");
+        const gpsVals = serieTemporal.map((p) => p.conformidade_gps);
+        const gpsMin = Math.max(65, Math.min(...gpsVals) - 6);
+        const gpsMax = Math.min(100, Math.max(...gpsVals) + 4);
+        dashboardChartGps = new Chart(ctxGps, {
+          type: "line",
+          data: {
+            labels: serieTemporal.map((p) => p.mes),
+            datasets: [
+              {
+                label: "Conformidade",
+                data: gpsVals,
+                borderColor: "#0d9488",
+                backgroundColor: gradGpsFill,
+                borderWidth: 2.75,
+                fill: true,
+                tension: 0.42,
+                pointRadius: 0,
+                pointHoverRadius: 7,
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "#0f766e",
+                pointHoverBorderWidth: 2.5,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: { duration: 1100, easing: "easeOutQuart" },
+            layout: { padding: { top: 6, right: 4, bottom: 2, left: 2 } },
+            interaction: { mode: "index", intersect: false },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: "rgba(255,255,255,0.96)",
+                titleColor: "#161616",
+                bodyColor: "#333",
+                borderColor: "rgba(13,148,136,0.25)",
+                borderWidth: 1,
+                padding: 12,
+                cornerRadius: 12,
+                displayColors: true,
+                boxPadding: 6,
+                callbacks: {
+                  label: (c) => ` ${c.parsed.y}% conformidade`,
+                },
+              },
+            },
+            scales: {
+              x: {
+                border: { display: false },
+                grid: { display: false, drawTicks: false },
+                ticks: { color: "#6B6B6B", font: { ...dashFont, size: 10, weight: "500" }, maxRotation: 0 },
+              },
+              y: {
+                min: gpsMin,
+                max: gpsMax,
+                border: { display: false },
+                grid: { color: "rgba(15,23,42,0.06)", drawTicks: false },
+                ticks: {
+                  color: "#6B6B6B",
+                  font: { ...dashFont, size: 10, weight: "500" },
+                  callback: (v) => v + "%",
+                  padding: 8,
+                },
+              },
+            },
+          },
+        });
+
+        const hAl = 260;
+        const ctxAl = document.getElementById("dashChartAlertas").getContext("2d");
+        const nMeses = serieTemporal.length;
+        dashboardChartAlertas = new Chart(ctxAl, {
+          type: "bar",
+          data: {
+            labels: serieTemporal.map((p) => p.mes),
+            datasets: [
+              {
+                label: "Alertas",
+                data: serieTemporal.map((p) => p.alertas_mes),
+                borderWidth: 0,
+                borderRadius: { topLeft: 12, topRight: 12, bottomLeft: 4, bottomRight: 4 },
+                maxBarThickness: 22,
+                backgroundColor: (c) => {
+                  const chart = c.chart;
+                  const { ctx, chartArea } = chart;
+                  if (!chartArea) return "rgba(251,191,36,0.65)";
+                  const g = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+                  const t = nMeses > 1 ? c.dataIndex / (nMeses - 1) : 0;
+                  g.addColorStop(0, `rgba(251, 113, 133, ${0.28 + t * 0.12})`);
+                  g.addColorStop(0.45, `rgba(251, 191, 36, ${0.5 + t * 0.25})`);
+                  g.addColorStop(1, `rgba(253, 224, 71, ${0.82 + t * 0.12})`);
+                  return g;
+                },
+                hoverBackgroundColor: "rgba(245,158,11,0.92)",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            datasets: {
+              bar: {
+                categoryPercentage: 0.82,
+                barPercentage: 0.68,
+              },
+            },
+            animation: { duration: 1100, easing: "easeOutQuart" },
+            layout: { padding: { top: 10, right: 4, bottom: 2, left: 2 } },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: "rgba(255,255,255,0.96)",
+                titleColor: "#161616",
+                bodyColor: "#333",
+                borderColor: "rgba(245,158,11,0.35)",
+                borderWidth: 1,
+                padding: 12,
+                cornerRadius: 12,
+                callbacks: {
+                  label: (c) => ` ${c.parsed.y} alertas`,
+                },
+              },
+            },
+            scales: {
+              x: {
+                border: { display: false },
+                grid: { display: false, drawTicks: false },
+                ticks: { color: "#6B6B6B", font: { ...dashFont, size: 10, weight: "500" }, maxRotation: 0 },
+              },
+              y: {
+                beginAtZero: true,
+                suggestedMax: Math.max(...serieTemporal.map((p) => p.alertas_mes)) + 4,
+                border: { display: false },
+                grid: { color: "rgba(15,23,42,0.06)", drawTicks: false },
+                ticks: { color: "#6B6B6B", font: { ...dashFont, size: 10, weight: "500" }, padding: 8 },
+              },
+            },
+          },
         });
       }
 

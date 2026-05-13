@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#fafaf8"/>
-<title>CADU — Infraestrutura Longitudinal em Neurodesenvolvimento</title>
+<title>CADU: Infraestrutura Longitudinal em Neurodesenvolvimento</title>
 <meta name="description" content="O CADU transforma dados fragmentados em inteligência assistencial contínua para operadoras, clínicas e famílias."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -147,7 +147,7 @@ section{position:relative}
 .issue-title{color:var(--black);margin-bottom:3px;font-size:16px;font-weight:700}
 .issue-desc{color:var(--text-3);font-size:16px;line-height:1.55}
 
-/* PROBLEMA — atmosfera + profundidade editorial (apenas #problema) */
+/* PROBLEMA: atmosfera + profundidade editorial (apenas #problema) */
 #problema.sec{--problema-scroll:0;position:relative;isolation:isolate;overflow:hidden;background-color:var(--bg);background-image:radial-gradient(120% 85% at 6% 8%,color-mix(in oklab,var(--cadu-rose-3) 20%,transparent),transparent 52%),radial-gradient(95% 80% at 96% 38%,color-mix(in oklab,var(--blue-soft) 38%,transparent),transparent 58%),linear-gradient(188deg,rgba(255,255,255,.42) 0%,transparent 42%,color-mix(in oklab,var(--bg-alt) 55%,transparent) 100%)}
 #problema.sec::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.55;background:radial-gradient(ellipse 75% 60% at 50% -8%,rgba(255,255,255,.38),transparent 58%);mix-blend-mode:soft-light}
 #problema.sec::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.038;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply}
@@ -172,7 +172,7 @@ section{position:relative}
   perspective:1180px;
   perspective-origin:56% 32%;
 }
-/* Vidro líquido — cards */
+/* Vidro líquido: cards */
 #problema .problema-col-right>.issue-card{
   position:relative;
   isolation:isolate;
@@ -260,7 +260,7 @@ section{position:relative}
   opacity:.88;
   transform-style:preserve-3d;
 }
-/* Módulo timeline — vidro escuro + sinal âmbar */
+/* Módulo timeline: vidro escuro + sinal âmbar */
 #problema .flow-cadu-n{
   position:relative;
   z-index:2;
@@ -420,7 +420,7 @@ section{position:relative}
 .conseq-title{color:var(--black);font-size:16px;font-weight:800;margin-bottom:.4rem;letter-spacing:-.02em}
 .conseq-body{color:var(--text-2);font-size:16px;line-height:1.6}
 
-/* COMO FUNCIONA — FLUXO */
+/* COMO FUNCIONA: FLUXO */
 .fluxo{display:flex;flex-direction:column;gap:0;margin-top:2.5rem;max-width:680px}
 .fluxo-step{display:flex;gap:1.25rem;align-items:flex-start;padding:1.4rem 0;border-bottom:1px solid var(--border);position:relative}
 .fluxo-step:last-child{border-bottom:none}
@@ -523,6 +523,7 @@ section{position:relative}
 /* FOOTER */
 footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem 1rem;padding:1.5rem 2.5rem;display:flex}
 .footer-left{color:#fff6;font-size:16px;font-weight:700;font-family:'Satoshi',-apple-system,system-ui,sans-serif;max-width:560px;line-height:1.45}
+.footer-left.footer-cadu{font-family:var(--font-logo);color:#f74e45;font-weight:900;letter-spacing:-.03em;font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.05}
 .footer-right{color:#ffffff2e;font-size:16px;font-family:'Satoshi',-apple-system,system-ui,sans-serif}
 
 /* REVEAL */
@@ -545,7 +546,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 @media(max-width:780px){.sol-grid,.conseq-grid,.impacto-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.wrap{padding:0 1.25rem}nav{padding:0 1.25rem}.sec{padding:4.5rem 0}.sol-grid,.conseq-grid,.impacto-grid{grid-template-columns:1fr}footer{flex-direction:column;align-items:flex-start;padding:1.5rem 1.25rem}.statement-block{padding:2.5rem 1.5rem}}
 
-/* cadu-operadoras (Hapvida) — extensões */
+/* cadu-operadoras (Hapvida): extensões */
 .nav-hap-logo{max-height:22px;width:auto;max-width:min(220px,50vw);object-fit:contain;display:block}
 .hero-hap-inline{max-height:36px;width:auto;max-width:min(300px,78vw);object-fit:contain;display:block}
 .hero-headline em,.section-headline em{color:#f74e45;font-style:normal;font-weight:900}
@@ -627,6 +628,11 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 .footer-links{display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap}
 .footer-links a{color:#ffffff59;font-size:16px;font-weight:600;text-decoration:none}
 .footer-links a:hover{color:#fffc}
+.footer-actions{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:flex-end}
+.footer-actions .footer-links a{color:#f74e45;font-weight:600}
+.footer-actions .footer-links a:hover{color:#ff8a82}
+.footer-actions .footer-right{color:#f74e45;font-weight:600;opacity:.95}
+
 @media(max-width:980px){
   .split-two,.fut-inner,.cta-split .wrap{grid-template-columns:1fr}
   .cta-split-acts{align-items:flex-start}
@@ -641,10 +647,13 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 .sol-grid-5 .sol-card:nth-child(5){grid-column:2}
 @media(max-width:980px){.sol-grid-5 .sol-card:nth-child(4),.sol-grid-5 .sol-card:nth-child(5){grid-column:auto}}
 .cta-headline strong{color:var(--red);font-weight:900}
-/* VISÃO PLANO DE SAÚDE (iframe — Tailwind + Chart isolados) */
+/* VISÃO PLANO DE SAÚDE (iframe, Tailwind + Chart isolados) */
 .portal-embed{margin-top:2.5rem;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border-md);box-shadow:var(--shadow-lg);background:#fafaf8;position:relative}
 .portal-embed iframe{width:100%;min-height:min(88vh,920px);border:0;display:block;background:#fafaf8}
 .portal-lead{max-width:640px;font-size:max(16px,max(1.05rem,var(--text-min)))}
+
+/* Carteira Hapvida: KPIs em 4 colunas (mesmo padrão .kpi-row) */
+.kpi-row--4{grid-template-columns:repeat(4,1fr)}
 
 </style>
 </head>
@@ -660,12 +669,13 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   </a>
   <ul class="nav-links">
     <li><a href="#problema">O problema</a></li>
+    <li><a href="#porque-hapvida">Por que Hapvida</a></li>
     <li><a href="#plataforma">Plataforma</a></li>
     <li><a href="#longitudinal">Longitudinalidade</a></li>
     <li><a href="#operadoras">Operadoras</a></li>
     <li><a href="#visao-plano">Plano de saúde</a></li>
   </ul>
-  <a href="mailto:ola@cadu.health?subject=Conversa técnica — CADU" class="nav-cta">Solicitar conversa
+  <a href="mailto:ola@cadu.health?subject=Conversa técnica (CADU)" class="nav-cta">Solicitar conversa
     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
   </a>
 </nav>
@@ -709,7 +719,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
         O CADU transforma dados fragmentados em inteligência assistencial contínua para operadoras, clínicas e famílias.
       </p>
       <div class="hero-btns reveal d3">
-        <a href="mailto:ola@cadu.health?subject=Conversa técnica — CADU" class="btn-red">
+        <a href="mailto:ola@cadu.health?subject=Conversa técnica (CADU)" class="btn-red">
           Agendar conversa técnica
           <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
@@ -779,7 +789,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
           <li>Auditoria manual tardia e incompleta</li>
           <li>Baixa visibilidade sobre rede credenciada</li>
           <li>Cada troca de profissional reinicia a jornada</li>
-          <li>A operadora enxerga faturamento — não evolução</li>
+          <li>A operadora enxerga faturamento, não evolução</li>
         </ul>
       </div>
       <div class="issue-cards problema-col-right">
@@ -808,6 +818,29 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="porque-hapvida" class="sec sec-white">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Carteira Hapvida</p>
+      <h2 class="section-headline">Por que começar<br/>pela <em>Hapvida?</em></h2>
+      <p class="section-body" style="max-width:640px">Com ~15,8 milhões de beneficiários e ~3,16 milhões de crianças e adolescentes (0 a 18) na base, a maior operadora da América Latina concentra escala e complexidade, onde a fragmentação do neurodesenvolvimento tem custo assistencial máximo.</p>
+    </div>
+    <ul class="urgencia-list reveal d1">
+      <li>Estimativa de até <strong>~250 mil</strong> crianças com TEA ou TDAH na carteira (contagem única, não somada).</li>
+      <li><strong>R$ 2 a 4 bilhões/ano</strong> em terapias de neurodesenvolvimento, com pouca visibilidade sobre resultado clínico.</li>
+      <li><strong>Zero visibilidade</strong> longitudinal sistemática sobre evolução entre clínicas, trocas de terapeutas e metas.</li>
+      <li>Maior operadora do Brasil: <strong>maior oportunidade de impacto</strong> com uma camada única de inteligência assistencial.</li>
+    </ul>
+    <div class="kpi-row kpi-row--4">
+      <div class="kpi reveal d1"><div class="kpi-n">250K</div><div class="kpi-l">Crianças TEA + TDAH · estimativa única na carteira</div></div>
+      <div class="kpi reveal d2"><div class="kpi-n">R$ 2 a 4 bi</div><div class="kpi-l">por ano em terapias de neurodesenvolvimento</div></div>
+      <div class="kpi reveal d3"><div class="kpi-n">R$ 100 a 400 mi</div><div class="kpi-l">fraude estimada no setor por ano (5 a 10%)</div></div>
+      <div class="kpi reveal d4"><div class="kpi-n">3 a 12×</div><div class="kpi-l">ROI potencial (eficiência + antifraude)</div></div>
     </div>
   </div>
 </section>
@@ -880,7 +913,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
     <div class="reveal">
       <p class="eyebrow">Longitudinality Engine</p>
       <h2 class="section-headline">A trajetória completa<br/>de cada criança,<br/><em>visível pela primeira vez.</em></h2>
-      <p class="section-body">Uma timeline contínua conectando diagnóstico, avaliações, trocas de terapeutas, evolução, intervenções — com IA detectando padrões ao longo do tempo.</p>
+      <p class="section-body">Uma timeline contínua conectando diagnóstico, avaliações, trocas de terapeutas, evolução, intervenções, com IA detectando padrões ao longo do tempo.</p>
     </div>
     <div class="timeline reveal d2">
       <div class="tl-spine"></div>
@@ -915,7 +948,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
     </div>
     <div class="op-2col">
       <div class="sol-card reveal"><div class="sol-title">Detecção precoce de risco</div><p class="sol-body">Alertas automáticos antes que inconsistências se tornem custo não justificado. A operadora age em vez de reagir.</p></div>
-      <div class="sol-card reveal d1"><div class="sol-title">Visibilidade assistencial real</div><p class="sol-body">Dados clínicos estruturados por criança, sessão e prestador. Não apenas faturamento — evolução real, longitudinal.</p></div>
+      <div class="sol-card reveal d1"><div class="sol-title">Visibilidade assistencial real</div><p class="sol-body">Dados clínicos estruturados por criança, sessão e prestador. Não apenas faturamento: evolução real, longitudinal.</p></div>
       <div class="sol-card reveal d2"><div class="sol-title">Auditoria ativa de rede</div><p class="sol-body">Comparativo longitudinal entre clínicas credenciadas. Performance terapêutica como critério de gestão de rede.</p></div>
       <div class="sol-card reveal"><div class="sol-title">Redução de lacunas operacionais</div><p class="sol-body">Conexão entre presença confirmada, faturamento e evolução. Elimina o espaço onde inconsistências crescem sem ser detectadas.</p></div>
     </div>
@@ -935,10 +968,10 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
     <div class="reveal">
       <p class="eyebrow">Visão do plano de saúde</p>
       <h2 class="section-headline">O que a operadora enxerga<br/><em>na prática.</em></h2>
-      <p class="section-body portal-lead">Protótipo navegável do módulo Operadora de Plano de Saúde do CADU: dashboard, crianças, clínicas, alertas e relatórios — dados sintéticos para demonstração comercial. Use o menu lateral do módulo; a interface roda isolada (iframe) para não misturar Tailwind e gráficos com esta landing.</p>
+      <p class="section-body portal-lead">Protótipo navegável do módulo Operadora de Plano de Saúde do CADU: dashboard, crianças, clínicas, alertas e relatórios, com dados sintéticos para demonstração comercial. Use o menu lateral do módulo; a interface roda isolada (iframe) para não misturar Tailwind e gráficos com esta landing.</p>
     </div>
     <div class="portal-embed reveal d1">
-      <iframe src="operadora-plano-saude.html" title="CADU — módulo operadora de plano de saúde (protótipo)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <iframe src="operadora-plano-saude.html" title="CADU: módulo operadora de plano de saúde (protótipo)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
@@ -967,24 +1000,24 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   <div class="cta-blob" aria-hidden="true"></div>
   <div class="wrap" style="text-align:center">
     <p class="cta-eyebrow reveal">Próximo passo</p>
-    <h2 class="cta-headline reveal d1">Construindo a <strong>próxima geração</strong><br/>da saúde <strong>longitudinal</strong>.</h2>
+    <h2 class="cta-headline reveal d1">Construindo o<br/><strong>futuro do neurodesenvolvimento</strong>.</h2>
     <p class="cta-sub reveal d2">Para operadoras, instituições e parceiros estratégicos.</p>
     <div class="cta-btns reveal d3">
-      <a href="mailto:ola@cadu.health?subject=Conversa técnica — CADU" class="btn-white">
+      <a href="mailto:ola@cadu.health?subject=Conversa técnica (CADU)" class="btn-white">
         Conversar com o time
         <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
       </a>
-      <a href="mailto:ola@cadu.health?subject=Material institucional — CADU" class="btn-outline">Receber material institucional</a>
+      <a href="mailto:ola@cadu.health?subject=Material institucional (CADU)" class="btn-outline">Receber material institucional</a>
     </div>
   </div>
 </section>
 
 <footer>
   <div>
-    <div class="footer-left">CADU</div>
+    <div class="footer-left footer-cadu">CADU</div>
     <div class="footer-left" style="margin-top:.35rem;font-weight:600;color:#ffffff9a;max-width:520px">Infraestrutura de rastreabilidade e coordenação de cuidado em neurodesenvolvimento</div>
   </div>
-  <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;justify-content:flex-end">
+  <div class="footer-actions">
     <ul class="footer-links">
       <li><a href="mailto:ola@cadu.health">Contato</a></li>
       <li><a href="#">Open Health</a></li>
