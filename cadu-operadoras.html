@@ -698,6 +698,14 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 
 /* Carteira Hapvida: KPIs em 4 colunas (mesmo padrão .kpi-row) */
 .kpi-row--4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:780px){
+  .sol-grid.sol-grid-5{grid-template-columns:1fr 1fr}
+  .kpi-row.kpi-row--4{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .sol-grid.sol-grid-5{grid-template-columns:1fr}
+  .kpi-row.kpi-row--4{grid-template-columns:1fr}
+}
 
 </style>
 </head>
