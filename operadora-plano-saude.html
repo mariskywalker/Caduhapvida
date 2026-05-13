@@ -80,6 +80,32 @@
         top: 20%;
         left: -100px;
       }
+      /* Liquid glass — cards e painéis no conteúdo (sidebar fora de main) */
+      main .bg-white.rounded-2xl,
+      main .bg-white.rounded-xl,
+      main a.bg-white.rounded-2xl {
+        background: rgba(255, 255, 255, 0.4) !important;
+        -webkit-backdrop-filter: blur(26px) saturate(190%);
+        backdrop-filter: blur(26px) saturate(190%);
+        box-shadow:
+          0 8px 36px rgba(15, 18, 28, 0.09),
+          0 2px 8px rgba(15, 18, 28, 0.04),
+          inset 0 1px 0 rgba(255, 255, 255, 0.82),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.45) !important;
+        transition: background 0.28s ease, box-shadow 0.28s ease, transform 0.22s ease;
+      }
+      main a.bg-white.rounded-2xl:hover,
+      main .bg-white.rounded-2xl:hover {
+        background: rgba(255, 255, 255, 0.56) !important;
+        box-shadow:
+          0 14px 48px rgba(15, 18, 28, 0.12),
+          0 4px 12px rgba(15, 18, 28, 0.06),
+          inset 0 1px 0 rgba(255, 255, 255, 0.92),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.55) !important;
+      }
+      main button.bg-white.rounded-xl:hover {
+        background: rgba(255, 255, 255, 0.58) !important;
+      }
       .tabular-nums {
         font-variant-numeric: tabular-nums;
       }
