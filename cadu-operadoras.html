@@ -526,6 +526,50 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 .footer-left.footer-cadu{font-family:var(--font-logo);color:#f74e45;font-weight:900;letter-spacing:-.03em;font-size:clamp(1.15rem,2.2vw,1.45rem);line-height:1.05}
 .footer-right{color:#ffffff2e;font-size:16px;font-family:'Satoshi',-apple-system,system-ui,sans-serif}
 
+
+/* MOBILE NAV + VISÃO PLANO (sem iframe no celular) */
+.nav-menu-btn{display:none;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border-radius:12px;border:1px solid var(--border-md);background:var(--white);cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent;z-index:301;position:relative}
+.nav-menu-bars,.nav-menu-bars::before,.nav-menu-bars::after{display:block;width:20px;height:2px;background:var(--black);border-radius:2px;position:relative;transition:transform .22s ease,opacity .18s ease}
+.nav-menu-bars::before,.nav-menu-bars::after{content:"";position:absolute;left:0}
+.nav-menu-bars::before{top:-7px}
+.nav-menu-bars::after{top:7px}
+.site-nav.nav-open .nav-menu-bars{background:transparent}
+.site-nav.nav-open .nav-menu-bars::before{top:0;transform:rotate(45deg)}
+.site-nav.nav-open .nav-menu-bars::after{top:0;transform:rotate(-45deg)}
+.nav-backdrop{position:fixed;inset:64px 0 0 0;background:rgba(14,14,12,.45);z-index:298;opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s;pointer-events:none}
+.site-nav.nav-open .nav-backdrop{opacity:1;visibility:visible;pointer-events:auto}
+.nav-mobile-sheet{position:fixed;top:64px;right:0;bottom:0;width:min(320px,90vw);z-index:299;transform:translateX(102%);transition:transform .3s cubic-bezier(.16,1,.3,1);background:#fafaf8f0;-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);border-left:1px solid var(--border-md);box-shadow:-16px 0 48px rgba(0,0,0,.1);padding:1.25rem 1.1rem 2rem;overflow-y:auto}
+.site-nav.nav-open .nav-mobile-sheet{transform:translateX(0)}
+.nav-mobile-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.15rem}
+.nav-mobile-list>li>a{display:block;padding:.9rem .65rem;font-size:16px;font-weight:700;color:var(--text);text-decoration:none;border-radius:12px}
+.nav-mobile-list>li>a:active,.nav-mobile-list>li>a:hover{background:var(--bg-alt);color:var(--red)}
+.nav-mobile-cta-row{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border)}
+.nav-mobile-cta{width:100%;justify-content:center;box-sizing:border-box}
+.visao-mobile-only{display:none;margin-top:1.75rem}
+.visao-mobile-card{background:var(--white);border:1px solid var(--border-md);border-radius:var(--radius-lg);padding:1.5rem 1.35rem;box-shadow:var(--shadow-sm)}
+.visao-mobile-kicker{font-family:var(--font-mono);font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:.35rem}
+.visao-mobile-title{font-size:clamp(1.1rem,3.5vw,1.35rem);font-weight:900;color:var(--black);letter-spacing:-.03em;margin-bottom:.6rem;line-height:1.2}
+.visao-mobile-text{font-size:max(16px,max(1.02rem,var(--text-min)));color:var(--text-2);line-height:1.65;margin:0}
+.visao-mobile-actions{margin-top:1.15rem}
+.visao-mobile-actions .btn-red{width:100%;justify-content:center;box-sizing:border-box}
+
+@media(max-width:980px){
+  .nav-menu-btn{display:inline-flex}
+  .nav-cta-bar{display:none}
+}
+@media(max-width:768px){
+  body.nav-menu-open{overflow:hidden;position:fixed;width:100%}
+  html{overflow-x:clip}
+  #visao-plano .portal-embed-desktop{display:none!important}
+  .visao-mobile-only{display:block}
+  .hero-content{padding:4.5rem 0 4rem}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .hero-btns .btn-red,.hero-btns .btn-ghost{width:100%;justify-content:center;box-sizing:border-box}
+  .hero-brand-lottie-wrap{max-height:40vh}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .cta-btns .btn-white,.cta-btns .btn-outline{width:100%;justify-content:center;box-sizing:border-box}
+}
+
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:none}
@@ -659,7 +703,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 </head>
 <body>
 
-<nav>
+<nav class="site-nav" id="site-nav">
   <a href="https://cadu.health" class="nav-brand">
     <span class="nav-wordmark">CADU</span>
     <span class="nav-slash">/</span>
@@ -675,7 +719,22 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
     <li><a href="#operadoras">Operadoras</a></li>
     <li><a href="#visao-plano">Plano de saúde</a></li>
   </ul>
-  <a href="mailto:ola@cadu.health?subject=Conversa técnica (CADU)" class="nav-cta">Solicitar conversa
+  <button type="button" class="nav-menu-btn" id="nav-menu-btn" aria-label="Abrir menu" aria-expanded="false">
+    <span class="nav-menu-bars" aria-hidden="true"></span>
+  </button>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+  <div class="nav-mobile-sheet" id="nav-mobile-sheet" role="dialog" aria-modal="true" aria-label="Navegação">
+    <ul class="nav-mobile-list">
+      <li><a href="#problema">O problema</a></li>
+      <li><a href="#porque-hapvida">Por que Hapvida</a></li>
+      <li><a href="#plataforma">Plataforma</a></li>
+      <li><a href="#longitudinal">Longitudinalidade</a></li>
+      <li><a href="#operadoras">Operadoras</a></li>
+      <li><a href="#visao-plano">Plano de saúde</a></li>
+      <li class="nav-mobile-cta-row"><a href="mailto:ola@cadu.health?subject=Conversa técnica (CADU)" class="btn-red nav-mobile-cta">Solicitar conversa</a></li>
+    </ul>
+  </div>
+  <a href="mailto:ola@cadu.health?subject=Conversa técnica (CADU)" class="nav-cta nav-cta-bar">Solicitar conversa
     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
   </a>
 </nav>
@@ -960,9 +1019,6 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   </div>
 </section>
 
-
-</section>
-
 <section id="visao-plano" class="sec sec-alt">
   <div class="wrap">
     <div class="reveal">
@@ -970,8 +1026,18 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
       <h2 class="section-headline">O que a operadora enxerga<br/><em>na prática.</em></h2>
       <p class="section-body portal-lead">Protótipo navegável do módulo Operadora de Plano de Saúde do CADU: dashboard, crianças, clínicas, alertas e relatórios, com dados sintéticos para demonstração comercial. Use o menu lateral do módulo; a interface roda isolada (iframe) para não misturar Tailwind e gráficos com esta landing.</p>
     </div>
-    <div class="portal-embed reveal d1">
+    <div class="portal-embed portal-embed-desktop reveal d1">
       <iframe src="operadora-plano-saude.html" title="CADU: módulo operadora de plano de saúde (protótipo)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="visao-mobile-only reveal d1">
+      <div class="visao-mobile-card">
+        <p class="visao-mobile-kicker">Módulo operadora</p>
+        <p class="visao-mobile-title">Demonstração interativa</p>
+        <p class="visao-mobile-text">O protótipo embarcado desta página é pensado para telas largas. No celular ele fica oculto para manter a leitura fluida. Para ver o painel completo, use um desktop ou converse com o time.</p>
+        <div class="visao-mobile-actions">
+          <a href="mailto:ola@cadu.health?subject=Demo módulo operadora (CADU)" class="btn-red">Agendar demo ao vivo</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1114,6 +1180,30 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     });
   },{threshold:0.14,rootMargin:'0px 0px -6% 0px'});
   ioP.observe(col);
+})();
+
+
+(function(){
+  var nav = document.getElementById('site-nav');
+  var btn = document.getElementById('nav-menu-btn');
+  var backdrop = document.getElementById('nav-backdrop');
+  if(!nav || !btn) return;
+  function setNavOpen(o){
+    nav.classList.toggle('nav-open', o);
+    btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+    document.body.classList.toggle('nav-menu-open', o);
+  }
+  btn.addEventListener('click', function(){ setNavOpen(!nav.classList.contains('nav-open')); });
+  if(backdrop) backdrop.addEventListener('click', function(){ setNavOpen(false); });
+  nav.querySelectorAll('#nav-mobile-sheet a').forEach(function(a){
+    a.addEventListener('click', function(){ setNavOpen(false); });
+  });
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 980) setNavOpen(false);
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') setNavOpen(false);
+  });
 })();
 
 const s = document.createElement('script');
