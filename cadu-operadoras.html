@@ -636,6 +636,68 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 .badge{display:inline-block;font-family:var(--font-mono);font-size:16px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:100px;margin-top:4px;font-weight:700}
 .ba{background:rgba(45,176,120,.18);color:#7dffc8}
 .bw{background:rgba(245,166,35,.15);color:var(--orange)}
+/* Timeline longitudinal: coluna vertical no mobile (evita overflow horizontal) */
+@media(max-width:768px){
+  #longitudinal .timeline{margin-top:2.25rem}
+  #longitudinal .tl-spine{
+    left:13px;
+    right:auto;
+    top:6px;
+    bottom:6px;
+    width:2px;
+    height:auto;
+    transform:none;
+    background:linear-gradient(180deg,transparent 0%,rgba(247,78,69,.18) 6%,rgba(247,78,69,.52) 22%,#f74e45 50%,rgba(247,78,69,.5) 78%,rgba(247,78,69,.14) 94%,transparent 100%);
+    box-shadow:0 0 14px rgba(247,78,69,.4),1px 0 0 rgba(255,255,255,.18) inset;
+  }
+  #longitudinal .tl-nodes{
+    flex-direction:column;
+    align-items:stretch;
+    overflow-x:visible;
+    padding:.15rem 0;
+    gap:0;
+  }
+  #longitudinal .tl-nodes .tn{
+    flex:none;
+    min-width:0;
+    width:100%;
+    display:grid;
+    grid-template-columns:28px minmax(0,1fr);
+    grid-template-rows:auto;
+    padding:.2rem 0 1rem;
+    justify-items:start;
+  }
+  #longitudinal .tl-nodes .tn-dot{
+    grid-column:1;
+    grid-row:1;
+    align-self:start;
+    margin-top:5px;
+    justify-self:center;
+  }
+  #longitudinal .tl-nodes .tn-top{
+    grid-column:2;
+    grid-row:1;
+    text-align:left;
+    align-items:flex-start;
+    justify-content:flex-start;
+    width:100%;
+    max-width:none;
+    padding-bottom:0;
+    min-height:0;
+  }
+  #longitudinal .tl-nodes .tn-bot{
+    grid-column:2;
+    grid-row:2;
+    text-align:left;
+    align-items:flex-start;
+    justify-content:flex-start;
+    padding-top:6px;
+    min-height:0;
+  }
+  #longitudinal .tl-nodes .tn-bot:empty{display:none}
+  #longitudinal .tl-nodes .tn-label{max-width:none}
+}
+
 .ai-card{margin-top:2.5rem;background:#ffffff08;border:1px solid #ffffff12;border-radius:var(--radius-lg);padding:1.5rem 1.75rem;display:flex;align-items:flex-start;gap:16px}
 .ai-ico{width:38px;height:38px;background:#ffffff10;border:1px solid #ffffff18;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .ai-lbl{font-family:var(--font-mono);font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:#f74e45;margin-bottom:6px;font-weight:700}
