@@ -18,6 +18,7 @@
   --red:#e8351a;--red-soft:#fff1ee;
   --cadu-rose:#eeb5a0;--cadu-rose-2:#e8a28c;--cadu-rose-3:#f2c9ba;
   --orange:#f5a623;--green:#2db07a;--green-soft:#edfaf3;
+  --cadu-green:#1d9e75;--cadu-green-soft:color-mix(in oklab,#1d9e75 12%,#fff);
   --blue:#3a7bd5;--blue-soft:#eef3fd;
   --text:#0e0e0c;--text-2:#575750;--text-3:#ababab;--text-min:16px;
   --border:#00000012;--border-md:#0000001c;
@@ -573,7 +574,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:none}
-.d1{transition-delay:60ms}.d2{transition-delay:.13s}.d3{transition-delay:.2s}.d4{transition-delay:.28s}
+.d1{transition-delay:60ms}.d2{transition-delay:.13s}.d3{transition-delay:.2s}.d4{transition-delay:.28s}.d5{transition-delay:.36s}
 @keyframes fadeUp{0%{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
 .enter-1{animation:.75s cubic-bezier(.16,1,.3,1) 50ms both fadeUp}
 
@@ -769,6 +770,198 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
   .kpi-row.kpi-row--4{grid-template-columns:1fr}
 }
 
+/* TIME FUNDADOR (antes do CTA) — lista vertical, cards visuais · vermelho CADU */
+.sec-founders{
+  background:linear-gradient(180deg,color-mix(in oklab,var(--red-soft) 58%,var(--bg)) 0%,var(--bg-alt) 55%,var(--bg-alt) 100%);
+}
+.sec-founders .founders-eyebrow{color:var(--red);letter-spacing:.12em}
+.sec-founders .section-headline{margin-bottom:2.75rem}
+.founders-grid{
+  display:flex;
+  flex-direction:column;
+  gap:1.35rem;
+  max-width:820px;
+  margin:0 auto;
+}
+.founder-card{
+  display:flex;
+  align-items:flex-start;
+  gap:1.5rem;
+  padding:1.65rem 1.65rem 1.75rem 1.5rem;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--border-md);
+  border-left:5px solid var(--red);
+  box-shadow:var(--shadow-sm);
+  background:linear-gradient(125deg,color-mix(in oklab,var(--red) 7%,#fff) 0%,#fff 42%,color-mix(in oklab,var(--bg-alt) 35%,#fff) 100%);
+  position:relative;
+  overflow:visible;
+  transition:box-shadow .22s,transform .22s,border-color .22s;
+}
+.founder-card:hover{
+  box-shadow:var(--shadow-md);
+  transform:translateY(-3px);
+  border-color:color-mix(in oklab,var(--red) 22%,var(--border-md));
+  border-left-color:var(--red);
+}
+.founder-card-visual{flex-shrink:0;padding-left:2px}
+.founder-avatar{
+  width:88px;height:88px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:18px;letter-spacing:.03em;
+  margin:0;
+  flex-shrink:0;
+  background:linear-gradient(145deg,color-mix(in oklab,var(--red) 14%,#fff),var(--red-soft));
+  color:var(--red);
+  font-family:var(--font-mono);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab,var(--red) 16%,transparent),
+    0 10px 28px color-mix(in oklab,var(--red) 12%,transparent);
+}
+.founder-avatar--photo{
+  padding:0;
+  overflow:hidden;
+  font-size:0;
+  line-height:0;
+}
+.founder-avatar--photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 22%;
+}
+.founder-card-body{min-width:0;flex:1;padding-top:.15rem}
+.founder-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:.75rem 1.25rem;
+  margin-bottom:.65rem;
+}
+.founder-card-headline{min-width:0}
+.founder-card-headline .founder-name{margin-bottom:.35rem}
+.founder-card-headline .founder-role{margin-bottom:0}
+.founder-li{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-top:.28rem;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text-2);
+  text-decoration:none;
+  transition:color .15s ease;
+}
+.founder-li:hover,.founder-li:focus-visible{color:#0a66c2}
+.founder-li:focus-visible{
+  outline:2px solid color-mix(in oklab,var(--red) 45%,transparent);
+  outline-offset:3px;
+  border-radius:6px;
+}
+.founder-li svg{flex-shrink:0;width:15px;height:15px;opacity:.92}
+.founder-card:not(:has(.founder-card-head)) .founder-li{margin-bottom:1rem}
+.founder-card:not(:has(.founder-card-head)) .founder-role{margin-bottom:.35rem}
+.founder-nd-wrap{
+  flex-shrink:0;
+  position:relative;
+  padding:4px 6px;
+  border-radius:10px;
+  background:linear-gradient(180deg,#fff,color-mix(in oklab,var(--bg-alt) 40%,#fff));
+  border:1px solid var(--border);
+  box-shadow:0 1px 4px #0000000b;
+  cursor:default;
+  outline:none;
+}
+.founder-nd-wrap:focus-visible{
+  box-shadow:0 0 0 2px color-mix(in oklab,var(--red) 45%,transparent),0 1px 4px #0000000b;
+}
+.founder-nd-wrap img{
+  display:block;
+  width:min(44px,13vw);
+  height:auto;
+  aspect-ratio:2/1;
+}
+.founder-nd-tip{
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 7px);
+  transform:translate3d(-50%,6px,0);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;
+  background:var(--black);
+  color:#fff;
+  font-family:var(--font-mono);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.14em;
+  padding:5px 9px 5px 10px;
+  border-radius:7px;
+  white-space:nowrap;
+  z-index:8;
+  box-shadow:0 4px 14px #00000026;
+}
+.founder-nd-wrap:hover .founder-nd-tip,
+.founder-nd-wrap:focus-visible .founder-nd-tip{
+  opacity:1;
+  transform:translate3d(-50%,0,0);
+}
+.founder-name{
+  font-weight:900;
+  font-size:clamp(1.2rem,2.4vw,1.45rem);
+  color:var(--black);
+  letter-spacing:-.03em;
+  margin-bottom:.35rem;
+  line-height:1.15;
+}
+.founder-role{
+  font-size:15px;
+  font-weight:700;
+  color:var(--red);
+  margin-bottom:.75rem;
+  line-height:1.4;
+  font-family:var(--font-mono);
+  letter-spacing:.02em;
+}
+.founder-note{font-size:15px;color:var(--text-2);line-height:1.62;max-width:62ch}
+.founder-note--extended{font-size:max(14px,max(.92rem,var(--text-min)));line-height:1.68;max-width:none}
+.founder-card .founder-note + .founder-note{margin-top:.7rem}
+.founders-footnote{
+  text-align:center;
+  max-width:42rem;
+  margin:2.75rem auto 0;
+  font-size:max(15px,max(.97rem,var(--text-min)));
+  color:var(--text-2);
+  line-height:1.65;
+}
+@media(max-width:560px){
+  .founder-card{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    padding:1.5rem 1.35rem 1.65rem;
+    border:1px solid var(--border-md);
+    border-top:4px solid var(--red);
+  }
+  .founder-card-visual{padding-left:0}
+  .founder-card-body{padding-top:0}
+  .founder-card-head{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .founder-nd-wrap{order:-1;margin-bottom:.15rem}
+  .founder-nd-tip{
+    bottom:auto;
+    top:calc(100% + 8px);
+    transform:translate3d(-50%,-5px,0);
+  }
+  .founder-nd-wrap:hover .founder-nd-tip,
+  .founder-nd-wrap:focus-visible .founder-nd-tip{
+    transform:translate3d(-50%,0,0);
+  }
+  .founder-note,.founder-note--extended{max-width:none}
+}
+
 </style>
 </head>
 <body>
@@ -788,6 +981,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
     <li><a href="#longitudinal">Longitudinalidade</a></li>
     <li><a href="#operadoras">Operadoras</a></li>
     <li><a href="#visao-plano">Plano de saúde</a></li>
+    <li><a href="#time-fundadores">Time</a></li>
   </ul>
   <button type="button" class="nav-menu-btn" id="nav-menu-btn" aria-label="Abrir menu" aria-expanded="false">
     <span class="nav-menu-bars" aria-hidden="true"></span>
@@ -801,6 +995,7 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
       <li><a href="#longitudinal">Longitudinalidade</a></li>
       <li><a href="#operadoras">Operadoras</a></li>
       <li><a href="#visao-plano">Plano de saúde</a></li>
+      <li><a href="#time-fundadores">Time</a></li>
       <li class="nav-mobile-cta-row"><a href="mailto:ola@cadu.health?subject=Conversa técnica (CADU)" class="btn-red nav-mobile-cta">Solicitar conversa</a></li>
     </ul>
   </div>
@@ -1131,6 +1326,107 @@ footer{background:var(--black);border-top:1px solid #ffffff0f;flex-wrap:wrap;jus
     </div>
   </div>
 </div>
+
+<section id="time-fundadores" class="sec sec-founders">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow founders-eyebrow">Credibilidade</p>
+      <h2 class="section-headline">Quem está<br/><em>por trás.</em></h2>
+    </div>
+    <div class="founders-grid">
+      <article class="founder-card reveal d1">
+        <div class="founder-card-visual">
+          <div class="founder-avatar founder-avatar--photo">
+            <img src="manu.jpeg" alt="" width="176" height="176" loading="lazy" decoding="async"/>
+          </div>
+        </div>
+        <div class="founder-card-body">
+          <div class="founder-card-head">
+            <div class="founder-card-headline">
+              <h3 class="founder-name">Manu Costa</h3>
+              <p class="founder-role">Founder &amp; CEO</p>
+              <a class="founder-li" href="https://www.linkedin.com/in/manulcosta/" target="_blank" rel="noopener noreferrer" aria-label="Manu Costa no LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+            <div class="founder-nd-wrap" tabindex="0" role="group" aria-label="Neurodiversidade (autismo)">
+              <img src="neurodiversity-symbol.svg" alt="" width="44" height="22" decoding="async" loading="lazy"/>
+              <span class="founder-nd-tip" aria-hidden="true">Autista</span>
+            </div>
+          </div>
+          <p class="founder-note founder-note--extended">Product designer com mais de 10 anos de experiência em plataformas, sistemas e produtos digitais, com passagem por Nike, Meta e Esri. Prepara sistemas complexos para alimentar a IA com dados e fluxos confiáveis. Atua na intersecção entre tecnologia, inteligência artificial e infraestrutura digital aplicada ao cuidado.</p>
+        </div>
+      </article>
+      <article class="founder-card reveal d2">
+        <div class="founder-card-visual">
+          <div class="founder-avatar founder-avatar--photo">
+            <img src="mari.png" alt="" width="176" height="176" loading="lazy" decoding="async"/>
+          </div>
+        </div>
+        <div class="founder-card-body">
+          <div class="founder-card-head">
+            <div class="founder-card-headline">
+              <h3 class="founder-name">Mariana Pappou</h3>
+              <p class="founder-role">Co-founder &amp; CBO</p>
+              <a class="founder-li" href="https://www.linkedin.com/in/marideoliveira/" target="_blank" rel="noopener noreferrer" aria-label="Mariana Pappou no LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+            <div class="founder-nd-wrap" tabindex="0" role="group" aria-label="Neurodiversidade (TDAH)">
+              <img src="neurodiversity-symbol.svg" alt="" width="44" height="22" decoding="async" loading="lazy"/>
+              <span class="founder-nd-tip" aria-hidden="true">TDAH</span>
+            </div>
+          </div>
+          <p class="founder-note founder-note--extended">Formação internacional pela University of the Arts London. Especialista em sistemas de design, estratégia de marca e design de interface. Criadora do método Neuro-Affective Design, que explora a intersecção entre comunicação, experiência sensorial, neurodivergência e infraestrutura de cuidado.</p>
+        </div>
+      </article>
+      <article class="founder-card reveal d3">
+        <div class="founder-card-visual">
+          <div class="founder-avatar founder-avatar--photo">
+            <img src="adriano.png" alt="" width="176" height="176" loading="lazy" decoding="async"/>
+          </div>
+        </div>
+        <div class="founder-card-body">
+          <h3 class="founder-name">Adriano Conrado</h3>
+          <p class="founder-role">Head of Clinical Operations</p>
+          <a class="founder-li" href="https://www.linkedin.com/in/adriano-conrado-rodrigues-ot-ms-30b90a1b9/" target="_blank" rel="noopener noreferrer" aria-label="Adriano Conrado no LinkedIn">
+            <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <p class="founder-note founder-note--extended">Terapeuta ocupacional especialista em neurodesenvolvimento e operações clínicas, com ampla atuação na estruturação e gestão de serviços multidisciplinares voltados ao cuidado infantil e desenvolvimento humano. Ex-vice-presidente do CREFITO-3, possui experiência na articulação entre prática clínica, regulação profissional e expansão de ecossistemas terapêuticos.</p>
+          <p class="founder-note founder-note--extended">Responsável pela arquitetura operacional e validação técnica das jornadas de cuidado, atua na integração entre saúde, educação e assistência, desenvolvendo modelos assistenciais longitudinais centrados na experiência das famílias e na sustentabilidade dos serviços clínicos.</p>
+        </div>
+      </article>
+      <article class="founder-card reveal d4">
+        <div class="founder-card-visual">
+          <div class="founder-avatar founder-avatar--photo">
+            <img src="william.jpeg" alt="" width="176" height="176" loading="lazy" decoding="async"/>
+          </div>
+        </div>
+        <div class="founder-card-body">
+          <div class="founder-card-head">
+            <div class="founder-card-headline">
+              <h3 class="founder-name">William Oliveira</h3>
+              <p class="founder-role">CTO</p>
+              <a class="founder-li" href="https://www.linkedin.com/in/william-oliveira/" target="_blank" rel="noopener noreferrer" aria-label="William Oliveira no LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+            <div class="founder-nd-wrap" tabindex="0" role="group" aria-label="Neurodiversidade (autismo)">
+              <img src="neurodiversity-symbol.svg" alt="" width="44" height="22" decoding="async" loading="lazy"/>
+              <span class="founder-nd-tip" aria-hidden="true">Autista</span>
+            </div>
+          </div>
+          <p class="founder-note founder-note--extended">Engenheiro de Software com trajetória em gigantes globais como IKEA e unicórnios como Loggi e QuintoAndar. Especialista no desenvolvimento de sistemas de larga escala e IA Generativa, lidera a visão tecnológica com foco em arquiteturas modernas e escaláveis. Atua na aceleração da entrega de produtos através de AI-assisted engineering e alta eficiência operacional.</p>
+        </div>
+      </article>
+    </div>
+    <p class="founders-footnote reveal d5">Nascemos da Clínica Casa do Urso, em São Paulo. 100+ famílias atendidas. Dados clínicos estruturados desde 2023.</p>
+  </div>
+</section>
 
 <section id="proximo" class="section-proximo">
   <div class="cta-blob" aria-hidden="true"></div>
